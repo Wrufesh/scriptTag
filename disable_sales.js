@@ -42,8 +42,13 @@ var myAppJavaScript = function ($) {
     var observer = new MutationObserver(function(mutations, observer) {
         // fired when a mutation occurs
         console.log("Wrufesh it has just changed.");
-        // $("button[type='submit'], input[type='submit']").attr("disabled", "disabled");
-        console.log(mutations, observer);
+        var selected =  $("button[type='submit'][name='checkout'], input[type='submit'][name='checkout']");
+        for(var i in selected){
+            if(!$(selected[i]).is(':disabled')){
+                $(selected[i]).attr("disabled", "disabled");
+            }
+        }
+        // console.log(mutations, observer);
         // ...
     });
 
