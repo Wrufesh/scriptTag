@@ -42,7 +42,7 @@ var myAppJavaScript = function ($) {
     var observer = new MutationObserver(function(mutations, observer) {
         // fired when a mutation occurs
         console.log("Wrufesh it has just changed.");
-        $("button[type='submit'], input[type='submit']").attr("disabled", "disabled");
+        // $("button[type='submit'], input[type='submit']").attr("disabled", "disabled");
         console.log(mutations, observer);
         // ...
     });
