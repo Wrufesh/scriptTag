@@ -31,8 +31,9 @@ var myAppJavaScript = function ($) {
      $ in this scope references the jQuery object we'll use.
      Don't use 'jQuery', or 'jQuery191', here. Use the dollar sign
      that was passed as argument.*/
-    $('body').append('<p>Wrufesh jquery version ' + $.fn.jquery + '</p>');
-    $("button[id^='AddToCart-'][name='add'][type='submit'], input[id^='AddToCart-'][name='add'][type='submit']").attr("disabled", "disabled")
+    // $('body').append('<p>Wrufesh jquery version ' + $.fn.jquery + '</p>');
+    $("button[id^='AddToCart-'][name='add'][type='submit'], input[id^='AddToCart-'][name='add'][type='submit']").attr("disabled", "disabled");
+    $("button[id^='AddToCart-'][name='add'][type='submit'], input[id^='AddToCart-'][name='add'][type='submit']").attr("value", "Sales Disabled Temporarily");
 };
 
 if ((typeof jQuery === 'undefined') || (parseFloat(jQuery.fn.jquery) < 1.7)) {
