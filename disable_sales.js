@@ -61,6 +61,12 @@ var myAppJavaScript = function ($) {
 // Observe a specific DOM element:
     observeDOM(document.body, function () {
         console.log('dom changed');
+        var selected = $("button[type='submit'][name='checkout'], input[type='submit'][name='checkout']");
+        for(var i in selected){
+            if(!$(selected[i]).is(':disabled')){
+                $(selected[i]).attr("disabled", "disabled");
+            }
+        }
     });
 };
 
