@@ -36,7 +36,7 @@ var myAppJavaScript = function ($) {
     $("input[id^='AddToCart-'][name='add'][type='submit']").val("Sales Disabled Temporarily");
 
     $("button[id^='AddToCart-'][name='add'][type='submit'], input[id^='AddToCart-'][name='add'][type='submit']").attr("disabled", "disabled");
-
+    $("button[type='submit'][name='checkout'], input[type='submit'][name='checkout']").attr("disabled", "disabled");
     var observeDOM = (function () {
         var MutationObserver = window.MutationObserver || window.WebKitMutationObserver,
             eventListenerSupported = window.addEventListener;
