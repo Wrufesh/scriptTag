@@ -31,32 +31,36 @@ var myAppJavaScript = function ($) {
      $ in this scope references the jQuery object we'll use.
      Don't use 'jQuery', or 'jQuery191', here. Use the dollar sign
      that was passed as argument.*/
-  // $('body').append('<p>Wrufesh jquery version ' + $.fn.jquery + '</p>');
+    // $('body').append('<p>Wrufesh jquery version ' + $.fn.jquery + '</p>');
     $("button[id^='AddToCart-'][name='add'][type='submit']").text("Sales Disabled Temporarily");
     $("input[id^='AddToCart-'][name='add'][type='submit']").val("Sales Disabled Temporarily");
 
     $("button[id^='AddToCart-'][name='add'][type='submit'], input[id^='AddToCart-'][name='add'][type='submit']").attr("disabled", "disabled");
 
-    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+    var observeDOM = (function () {
+        var MutationObserver = window.MutationObserver || window.WebKitMutationObserver,
+            eventListenerSupported = window.addEventListener;
 
-    var observer = new MutationObserver(function(mutations, observer) {
-        // fired when a mutation occurs
-        console.log("Wrufesh it has just changed.");
-        $("button[type='submit'][name='checkout'], input[type='submit'][name='checkout']").attr("disabled", "disabled");
-        // for(var i in selected){
-        //     if(!$(selected[i]).is(':disabled')){
-        //         $(selected[i]).attr("disabled", "disabled");
-        //     }
-        // }
-        // console.log(mutations, observer);
-        // ...
-    });
+        return function (obj, callback) {
+            if (MutationObserver) {
+                // define a new observer
+                var obs = new MutationObserver(function (mutations, observer) {
+                    if (mutations[0].addedNodes.length || mutations[0].removedNodes.length)
+                        callback();
+                });
+                // have the observer observe foo for changes in children
+                obs.observe(obj, {childList: true, subtree: true});
+            }
+            else if (eventListenerSupported) {
+                obj.addEventListener('DOMNodeInserted', callback, false);
+                obj.addEventListener('DOMNodeRemoved', callback, false);
+            }
+        };
+    })();
 
-    // define what element should be observed by the observer
-    // and what types of mutations trigger the callback
-    observer.observe(document, {
-      subtree: true,
-      attributes: false,
+// Observe a specific DOM element:
+    observeDOM(document.body, function () {
+        console.log('dom changed');
     });
 };
 
