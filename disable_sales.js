@@ -37,7 +37,22 @@ var myAppJavaScript = function ($) {
 
     $("button[id^='AddToCart-'][name='add'][type='submit'], input[id^='AddToCart-'][name='add'][type='submit']").attr("disabled", "disabled");
 
-    $("button[type='submit'], input[type='submit']").attr("disabled", "disabled");
+    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+
+    var observer = new MutationObserver(function(mutations, observer) {
+        // fired when a mutation occurs
+        console.log("Wrufesh it has just changed.");
+        $("button[type='submit'], input[type='submit']").attr("disabled", "disabled");
+        console.log(mutations, observer);
+        // ...
+    });
+
+    // define what element should be observed by the observer
+    // and what types of mutations trigger the callback
+    observer.observe(document, {
+      subtree: true,
+      attributes: true
+    });
 };
 
 if ((typeof jQuery === 'undefined') || (parseFloat(jQuery.fn.jquery) < 1.7)) {
