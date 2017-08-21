@@ -32,10 +32,12 @@ var myAppJavaScript = function ($) {
      Don't use 'jQuery', or 'jQuery191', here. Use the dollar sign
      that was passed as argument.*/
   // $('body').append('<p>Wrufesh jquery version ' + $.fn.jquery + '</p>');
-    $("button[id^='AddToCart-'][name='add'][type='submit'], input[id^='AddToCart-'][name='add'][type='submit']").attr("value", "Sales Disabled Temporarily");
+    $("button[id^='AddToCart-'][name='add'][type='submit']").text("Sales Disabled Temporarily");
+    $("input[id^='AddToCart-'][name='add'][type='submit']").val("Sales Disabled Temporarily");
+
     $("button[id^='AddToCart-'][name='add'][type='submit'], input[id^='AddToCart-'][name='add'][type='submit']").attr("disabled", "disabled");
 
-    $("button[name='checkout'][type='submit'], [name='checkout'][type='submit']").attr("disabled", "disabled");
+    $("button[type='submit'], input[type='submit']").attr("disabled", "disabled");
 };
 
 if ((typeof jQuery === 'undefined') || (parseFloat(jQuery.fn.jquery) < 1.7)) {
