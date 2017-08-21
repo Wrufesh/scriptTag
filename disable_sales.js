@@ -42,12 +42,12 @@ var myAppJavaScript = function ($) {
     var observer = new MutationObserver(function(mutations, observer) {
         // fired when a mutation occurs
         console.log("Wrufesh it has just changed.");
-        var selected =  $("button[type='submit'][name='checkout'], input[type='submit'][name='checkout']");
-        for(var i in selected){
-            if(!$(selected[i]).is(':disabled')){
-                $(selected[i]).attr("disabled", "disabled");
-            }
-        }
+        $("button[type='submit'][name='checkout'], input[type='submit'][name='checkout']").attr("disabled", "disabled");
+        // for(var i in selected){
+        //     if(!$(selected[i]).is(':disabled')){
+        //         $(selected[i]).attr("disabled", "disabled");
+        //     }
+        // }
         // console.log(mutations, observer);
         // ...
     });
@@ -56,7 +56,7 @@ var myAppJavaScript = function ($) {
     // and what types of mutations trigger the callback
     observer.observe(document, {
       subtree: true,
-      attributes: true
+      attributes: false,
     });
 };
 
